@@ -4,8 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.paddingFromBaseline
@@ -77,6 +80,8 @@ fun PreviewSearchBar(){
 
 @Composable
 fun AlignYourBodyElement(
+    @DrawableRes imageId: Int,
+    @StringRes textId: Int,
     modifier: Modifier = Modifier
 ){
     Column(
@@ -84,25 +89,28 @@ fun AlignYourBodyElement(
         modifier = modifier
     ) {
         Image(
-            painter = painterResource(R.drawable.ab1_inversions),
-            contentDescription = stringResource(R.string.ab1_inversions),
+            painter = painterResource(imageId),
+            contentDescription = stringResource(textId),
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(88.dp)
                 .clip(CircleShape)
         )
         Text(
-            text = stringResource(R.string.ab1_inversions),
+            text = stringResource(textId),
             style = MaterialTheme.typography.bodyMedium,
             modifier = modifier.paddingFromBaseline(top=24.dp, bottom = 8.dp)
         )
     }
 }
 
-@Preview
+@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
 @Composable
 fun AlingYourBodyElementPreview(){
     MindFulnessTheme {
-        AlignYourBodyElement()
+        AlignYourBodyElement(
+            imageId = R.drawable.ab4_tabata,
+            textId = R.string.ab4_tabata
+        )
     }
 }
